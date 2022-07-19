@@ -41,55 +41,7 @@ class GrafikDPTController extends Controller
      */
     public function store(Request $request)
     {
-        $institution_id = $request->institution_id;
-        $sensors_id     = $request->sensors_id;
-        $serial_number  = $request->serial_number;
-        $expired_date   = $request->expired_date;
-        $message        = '';
-
-        try {
-
-            $check_data = TranInstitutionSensors::where('institution_id', $institution_id)
-                            ->where('sensors_id', $sensors_id)
-                            ->where('serial_number', $serial_number)
-                            ->where('expired_date', $expired_date)
-                            ->exists();
-            
-            if ($check_data > 0) {
-                
-                $data['result'] = 'failed';
-                $data['message'] = 'Data already exists!';
-
-            } else {
-
-                $create_data = TranInstitutionSensors::create([
-                    'institution_id'    => $institution_id,
-                    'sensors_id'        => $sensors_id,
-                    'serial_number'     => $serial_number,
-                    'expired_date'      => $expired_date
-                ]);
-
-                if ($create_data) {
-
-                    $data['result'] = 'success';
-                    $data['message'] = 'Congrats! Data has been created in the database!';
-                }
-                else{
-
-                    $data['result'] = 'failed';
-                    $data['message'] = 'Something when wrong, please contact administrator';
-
-                }
-            }
-            
-        } catch (Exception $e) {
-            
-            $data['result'] = 'failed';
-            $data['message'] = 'Something when wrong, please contact administrator';
-        }
-
-
-        return response($data);
+        
     }
 
     /**
@@ -100,37 +52,11 @@ class GrafikDPTController extends Controller
      */
     public function show($id)
     {
-        if ($id == 'all') {
-            
-            $select_data = TranInstitutionSensors::select(
-                            'tran_institution_sensors.*', 
-                            'institution.name as institution_name', 
-                            'institution.location as institution_location', 
-                            'institution.coordinate as coordinate', 
-                            'sensors.name as sensors_name')
-                        ->join('institution', 'institution.id', '=', 'institution_id')
-                        ->join('sensors', 'sensors.id', '=', 'sensors_id')->get();
-        }
-        else{
-
-            $select_data = TranInstitutionSensors::select(
-                            'tran_institution_sensors.*', 
-                            'institution.name as institution_name', 
-                            'institution.location as institution_location', 
-                            'institution.coordinate as coordinate', 
-                            'sensors.name as sensors_name')
-                        ->join('institution', 'institution.id', '=', 'institution_id')
-                        ->join('sensors', 'sensors.id', '=', 'sensors_id')
-                        ->where('institution_type_id', $id)
-                        ->get();
-        }
-
-        return response($select_data);
+        
     }
 
     public function data_gender(Request $request)
     {
-        $level_select   = $request->level_select;
         $provinsi_name  = $request->provinsi_name;
         $kabkota_name   = $request->kabkota_name;
         $kecamatan_name = $request->kecamatan_name;
@@ -140,100 +66,7 @@ class GrafikDPTController extends Controller
 
         try {
 
-            if ($level_select == 'provinsi') {
-                
-                if ($provinsi_name == 'Semua') {
-                    
-                    $get_data_total = DKIJakarta::count();
-
-                    $get_data_man = DKIJakarta::where('jenis_kelamin', 'L')->count();
-                }
-                else{
-
-                    $get_data_total = DKIJakarta::where('pro', $provinsi_name)->count();
-
-                    $get_data_man = DKIJakarta::where('pro', $provinsi_name)
-                                    ->where('jenis_kelamin', 'L')
-                                    ->count();
-                }
-            }
-            else if ($level_select == 'kabkota') {
-                
-                if ($kabkota_name == 'Semua') {
-                    
-                    $get_data_total = DKIJakarta::where('pro', $provinsi_name)->count();
-
-                    $get_data_man = DKIJakarta::where('pro', $provinsi_name)
-                                    ->where('jenis_kelamin', 'L')
-                                    ->count();
-                }
-                else{
-
-                    $get_data_total = DKIJakarta::where('pro', $provinsi_name)->where('kab', $kabkota_name)->count();
-
-                    $get_data_man = DKIJakarta::where('pro', $provinsi_name)
-                                    ->where('kab', $kabkota_name)
-                                    ->where('jenis_kelamin', 'L')
-                                    ->count();
-                }
-            }
-            else if ($level_select == 'kecamatan') {
-                
-                if ($kecamatan_name == 'Semua') {
-                    
-                    $get_data_total = DKIJakarta::where('pro', $provinsi_name)->where('kab', $kabkota_name)->count();
-
-                    $get_data_man = DKIJakarta::where('pro', $provinsi_name)
-                                    ->where('kab', $kabkota_name)
-                                    ->where('jenis_kelamin', 'L')
-                                    ->count();
-                }
-                else{
-
-                    $get_data_total = DKIJakarta::where('pro', $provinsi_name)
-                                    ->where('kab', $kabkota_name)
-                                    ->where('kec', $kecamatan_name)
-                                    ->count();
-
-                    $get_data_man = DKIJakarta::where('pro', $provinsi_name)
-                                    ->where('kab', $kabkota_name)
-                                    ->where('kec', $kecamatan_name)
-                                    ->where('jenis_kelamin', 'L')
-                                    ->count();
-                }
-            }
-            else if ($level_select == 'kelurahan') {
-                
-                if ($kelurahan_name == 'Semua') {
-                    
-                    $get_data_total = DKIJakarta::where('pro', $provinsi_name)
-                                    ->where('kab', $kabkota_name)
-                                    ->where('kec', $kecamatan_name)
-                                    ->count();
-
-                    $get_data_man = DKIJakarta::where('pro', $provinsi_name)
-                                    ->where('kab', $kabkota_name)
-                                    ->where('kec', $kecamatan_name)
-                                    ->where('jenis_kelamin', 'L')
-                                    ->count();
-                }
-                else{
-
-                    $get_data_total = DKIJakarta::where('pro', $provinsi_name)
-                                    ->where('kab', $kabkota_name)
-                                    ->where('kec', $kecamatan_name)
-                                    ->where('kel', $kelurahan_name)
-                                    ->count();
-
-                    $get_data_man = DKIJakarta::where('pro', $provinsi_name)
-                                    ->where('kab', $kabkota_name)
-                                    ->where('kec', $kecamatan_name)
-                                    ->where('kel', $kelurahan_name)
-                                    ->where('jenis_kelamin', 'L')
-                                    ->count();
-                }
-            }
-            else if ($level_select == 'tps') {
+            if (strlen($tps_name) > 0) {
                 
                 if ($tps_name == 'Semua') {
                     
@@ -264,6 +97,99 @@ class GrafikDPTController extends Controller
                                     ->where('kec', $kecamatan_name)
                                     ->where('kel', $kelurahan_name)
                                     ->where('tps', $tps_name)
+                                    ->where('jenis_kelamin', 'L')
+                                    ->count();
+                }
+            }
+            else if (strlen($kelurahan_name) > 0) {
+                
+                if ($kelurahan_name == 'Semua') {
+                    
+                    $get_data_total = DKIJakarta::where('pro', $provinsi_name)
+                                    ->where('kab', $kabkota_name)
+                                    ->where('kec', $kecamatan_name)
+                                    ->count();
+
+                    $get_data_man = DKIJakarta::where('pro', $provinsi_name)
+                                    ->where('kab', $kabkota_name)
+                                    ->where('kec', $kecamatan_name)
+                                    ->where('jenis_kelamin', 'L')
+                                    ->count();
+                }
+                else{
+
+                    $get_data_total = DKIJakarta::where('pro', $provinsi_name)
+                                    ->where('kab', $kabkota_name)
+                                    ->where('kec', $kecamatan_name)
+                                    ->where('kel', $kelurahan_name)
+                                    ->count();
+
+                    $get_data_man = DKIJakarta::where('pro', $provinsi_name)
+                                    ->where('kab', $kabkota_name)
+                                    ->where('kec', $kecamatan_name)
+                                    ->where('kel', $kelurahan_name)
+                                    ->where('jenis_kelamin', 'L')
+                                    ->count();
+                }
+            }
+            else if (strlen($kecamatan_name) > 0) {
+                
+                if ($kecamatan_name == 'Semua') {
+                    
+                    $get_data_total = DKIJakarta::where('pro', $provinsi_name)->where('kab', $kabkota_name)->count();
+
+                    $get_data_man = DKIJakarta::where('pro', $provinsi_name)
+                                    ->where('kab', $kabkota_name)
+                                    ->where('jenis_kelamin', 'L')
+                                    ->count();
+                }
+                else{
+
+                    $get_data_total = DKIJakarta::where('pro', $provinsi_name)
+                                    ->where('kab', $kabkota_name)
+                                    ->where('kec', $kecamatan_name)
+                                    ->count();
+
+                    $get_data_man = DKIJakarta::where('pro', $provinsi_name)
+                                    ->where('kab', $kabkota_name)
+                                    ->where('kec', $kecamatan_name)
+                                    ->where('jenis_kelamin', 'L')
+                                    ->count();
+                }
+            }
+            else if (strlen($kabkota_name) > 0) {
+                
+                if ($kabkota_name == 'Semua') {
+                    
+                    $get_data_total = DKIJakarta::where('pro', $provinsi_name)->count();
+
+                    $get_data_man = DKIJakarta::where('pro', $provinsi_name)
+                                    ->where('jenis_kelamin', 'L')
+                                    ->count();
+                }
+                else{
+
+                    $get_data_total = DKIJakarta::where('pro', $provinsi_name)->where('kab', $kabkota_name)->count();
+
+                    $get_data_man = DKIJakarta::where('pro', $provinsi_name)
+                                    ->where('kab', $kabkota_name)
+                                    ->where('jenis_kelamin', 'L')
+                                    ->count();
+                }
+            }
+            else if (strlen($provinsi_name) > 0) {
+                
+                if ($provinsi_name == 'Semua') {
+                    
+                    $get_data_total = DKIJakarta::count();
+
+                    $get_data_man = DKIJakarta::where('jenis_kelamin', 'L')->count();
+                }
+                else{
+
+                    $get_data_total = DKIJakarta::where('pro', $provinsi_name)->count();
+
+                    $get_data_man = DKIJakarta::where('pro', $provinsi_name)
                                     ->where('jenis_kelamin', 'L')
                                     ->count();
                 }

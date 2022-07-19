@@ -252,6 +252,8 @@
 			width: 100%;
 		}
 	</style>
+	@yield('style')
+
 	<!--begin::Body-->
 	<body id="kt_body" class="header-fixed header-tablet-and-mobile-fixed toolbar-enabled toolbar-fixed toolbar-tablet-and-mobile-fixed aside-enabled aside-fixed" style="--kt-toolbar-height:55px;--kt-toolbar-height-tablet-and-mobile:55px">
 		<!--begin::Main-->
@@ -311,20 +313,20 @@
 									</a>
 								</div>
 								<hr></hr>
-								@if(
+								<!-- if(
 									in_array("perizinan_ln_setup", Session::get('privilege')) ||
 									in_array("perizinan_nikah_setup", Session::get('privilege'))
-									)
+									) -->
 								<div class="menu-item">
 									<div class="menu-content pt-8 pb-0">
 										<span class="menu-section text-muted text-uppercase fs-8">Menu</span>
 									</div>
 								</div>
-								@endif
+								<!-- endif -->
 								
-								@if(in_array("perizinan_ln_setup", Session::get('privilege')))
+								<!-- if(in_array("perizinan_ln_setup", Session::get('privilege'))) -->
 								<div class="menu-item">
-									<a class="menu-link" href="/perizinan_ln">
+									<a class="menu-link" href="/grafik_dpt">
 										<span class="menu-icon">
 											<!--begin::Svg Icon | path: icons/duotone/Interface/Settings-02.svg-->
 											<span class="svg-icon svg-icon-2">
@@ -337,14 +339,14 @@
 											</span>
 											<!--end::Svg Icon-->
 										</span>
-										<span class="menu-title">Izin Luar Negeri</span>
+										<span class="menu-title">Data DPT</span>
 									</a>
 								</div>
-								@endif
+								<!-- endif -->
 
-								@if(in_array("perizinan_nikah_setup", Session::get('privilege')))
+								<!-- if(in_array("perizinan_nikah_setup", Session::get('privilege'))) -->
 								<div class="menu-item">
-									<a class="menu-link" href="/perizinan_nikah">
+									<a class="menu-link" href="/grafik_ppwp">
 										<span class="menu-icon">
 											<!--begin::Svg Icon | path: icons/duotone/Interface/Settings-02.svg-->
 											<span class="svg-icon svg-icon-2">
@@ -357,11 +359,11 @@
 											</span>
 											<!--end::Svg Icon-->
 										</span>
-										<span class="menu-title">Izin Menikah</span>
+										<span class="menu-title">Data PPWP</span>
 									</a>
 								</div>
+								<!-- endif -->
 
-								@endif
 								@if(
 									in_array("user_setup", Session::get('privilege')) ||
 									in_array("group_setup", Session::get('privilege'))
@@ -577,8 +579,7 @@
 		<script src="assets/js/amcharts_5.1.11/xy.js"></script>
 		<script src="assets/js/amcharts_5.1.11/percent.js"></script>
 		<script src="assets/js/amcharts_5.1.11/themes/Animated.js"></script>
-		<script src="https://code.highcharts.com/highcharts.js"></script>
-		<!-- <script src="assets/js/countUp_2.1.0/dist/countUp.js"></script> -->
+		<script src="assets/js/countUp_2.1.0/dist/countUp.min.js" type="module"></script>
 		<!-- <script src="assets/js/amcharts_5.1.11/geodata/germanyLow.js"></script> -->
 		<!-- <script src="assets/js/amcharts_5.1.11/fonts/notosans-sc.js"></script> -->
 		<!--end::Page Custom Javascript-->

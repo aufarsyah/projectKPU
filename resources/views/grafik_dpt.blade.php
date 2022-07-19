@@ -48,93 +48,119 @@
 	                                	<option value="all" selected>Semua</option>
 	                            	</select>	
 								</div>
-								<div class="col-2 fv-row mb-7 div-kabkota">
+								<div class="col-2 fv-row mb-7 div-sel-kabkota">
                     				<label class="form-label fw-bolder text-dark fs-6">Kab/Kota</label>
 									<select id="select_kabkota" class="form-select form-select-lg" data-control="select2" data-placeholder="Select an option">
-	                                	<option value="all" selected>Semua</option>
 	                            	</select>	
 								</div>
-								<div class="col-2 fv-row mb-7 div-kecamatan">
+								<div class="col-2 fv-row mb-7 div-sel-kecamatan">
                     				<label class="form-label fw-bolder text-dark fs-6">Kecamatan</label>
 									<select id="select_kecamatan" class="form-select form-select-lg" data-control="select2" data-placeholder="Select an option">
-	                                	<option value="all" selected>Semua</option>
 	                            	</select>	
 								</div>
-								<div class="col-2 fv-row mb-7 div-kelurahan">
+								<div class="col-2 fv-row mb-7 div-sel-kelurahan">
                     				<label class="form-label fw-bolder text-dark fs-6">Kelurahan</label>
 									<select id="select_kelurahan" class="form-select form-select-lg" data-control="select2" data-placeholder="Select an option">
-	                                	<option value="all" selected>Semua</option>
 	                            	</select>	
 								</div>
-								<div class="col-2 fv-row mb-7 div-tps">
+								<div class="col-2 fv-row mb-7 div-sel-tps">
                     				<label class="form-label fw-bolder text-dark fs-6">TPS</label>
 									<select id="select_tps" class="form-select form-select-lg" data-control="select2" data-placeholder="Select an option">
-	                                	<option value="all" selected>Semua</option>
 	                            	</select>	
 								</div>
-								<div class="col-2 fv-row mt-10">
-                    				<a class="btn btn-sm btn-gold fs-5" id="btn_reset">Reset Filter</a>
+								<div class="col-2 fv-row mt-9">
+                    				<a id="btn_search" class="btn btn-icon btn-primary"><i class="bi bi-search fs-4"></i></a>
+                    				<a id="btn_reset" class="btn btn-icon btn-danger"><i class="bi bi-arrow-repeat fs-2"></i></a>
 								</div>
 							</div>
 							
-							<div class="col-6">
-								<div id="div_chart_pie"></div>
+							<div id="div_data" class="row">
+								<div class="col-6">
+									<div id="div_chart_pie"></div>
+								</div>
+								<div class="col-3 fs-4">
+									<ul class="list-group list-group-flush">
+									  <li class="list-group-item d-flex justify-content-between align-items-start li-provinsi">
+									    <div class="ms-2 me-auto">
+									      <div class="fw-bolder">Provinsi</div>
+									      <span class="tx-provinsi"></span>
+									    </div>
+									  </li>
+									  <li class="list-group-item d-flex justify-content-between align-items-start li-kabkota">
+									    <div class="ms-2 me-auto">
+									      <div class="fw-bolder">Kab/Kota</div>
+									      <span class="tx-kabkota"></span>
+									    </div>
+									  </li>
+									  <li class="list-group-item d-flex justify-content-between align-items-start li-kecamatan">
+									    <div class="ms-2 me-auto">
+									      <div class="fw-bolder">Kecamatan</div>
+									      <span class="tx-kecamatan"></span>
+									    </div>
+									  </li>
+									  <li class="list-group-item d-flex justify-content-between align-items-start li-kelurahan">
+									    <div class="ms-2 me-auto">
+									      <div class="fw-bolder">Kelurahan</div>
+									      <span class="tx-kelurahan"></span>
+									    </div>
+									  </li>
+									  <li class="list-group-item d-flex justify-content-between align-items-start li-tps">
+									    <div class="ms-2 me-auto">
+									      <div class="fw-bolder">TPS</div>
+									      <span class="tx-tps"></span>
+									    </div>
+									  </li>
+									</ul>
+								</div>
+								<div class="col-3 fs-4">
+									<ul class="list-group list-group-flush">
+									  <li class="list-group-item d-flex justify-content-between align-items-start">
+									    <div class="ms-2 me-auto">
+									      <div class="fw-bolder">Total</div>
+									      <span id="tx_total" class="tx-total">0</span>
+									    </div>
+									  </li>
+									  <li class="list-group-item d-flex justify-content-between align-items-start">
+									    <div class="ms-2 me-auto">
+									      <div class="fw-bolder">Laki-laki</div>
+									      <span id="tx_laki" class="tx-laki">0</span>
+									    </div>
+									  </li>
+									  <li class="list-group-item d-flex justify-content-between align-items-start">
+									    <div class="ms-2 me-auto">
+									      <div class="fw-bolder">Perempuan</div>
+									      <span id="tx_perempuan" class="tx-perempuan">0</span>
+									    </div>
+									  </li>
+									</ul>
+								</div>
 							</div>
-							<div class="col-3 fs-4 list-text">
-								<ul class="list-group list-group-flush">
-								  <li class="list-group-item d-flex justify-content-between align-items-start li-provinsi">
-								    <div class="ms-2 me-auto">
-								      <div class="fw-bolder">Provinsi</div>
-								      <span class="tx-provinsi"></span>
-								    </div>
-								  </li>
-								  <li class="list-group-item d-flex justify-content-between align-items-start li-kabkota">
-								    <div class="ms-2 me-auto">
-								      <div class="fw-bolder">Kab/Kota</div>
-								      <span class="tx-kabkota"></span>
-								    </div>
-								  </li>
-								  <li class="list-group-item d-flex justify-content-between align-items-start li-kecamatan">
-								    <div class="ms-2 me-auto">
-								      <div class="fw-bolder">Kecamatan</div>
-								      <span class="tx-kecamatan"></span>
-								    </div>
-								  </li>
-								  <li class="list-group-item d-flex justify-content-between align-items-start li-kelurahan">
-								    <div class="ms-2 me-auto">
-								      <div class="fw-bolder">Kelurahan</div>
-								      <span class="tx-kelurahan"></span>
-								    </div>
-								  </li>
-								  <li class="list-group-item d-flex justify-content-between align-items-start li-tps">
-								    <div class="ms-2 me-auto">
-								      <div class="fw-bolder">TPS</div>
-								      <span class="tx-tps"></span>
-								    </div>
-								  </li>
-								</ul>
-							</div>
-							<div class="col-3 fs-4">
-								<ul class="list-group list-group-flush">
-								  <li class="list-group-item d-flex justify-content-between align-items-start">
-								    <div class="ms-2 me-auto">
-								      <div class="fw-bolder">Total</div>
-								      <span class="tx-total"></span>
-								    </div>
-								  </li>
-								  <li class="list-group-item d-flex justify-content-between align-items-start">
-								    <div class="ms-2 me-auto">
-								      <div class="fw-bolder">Laki-laki</div>
-								      <span class="tx-laki"></span>
-								    </div>
-								  </li>
-								  <li class="list-group-item d-flex justify-content-between align-items-start">
-								    <div class="ms-2 me-auto">
-								      <div class="fw-bolder">Perempuan</div>
-								      <span class="tx-perempuan"></span>
-								    </div>
-								  </li>
-								</ul>
+							<div id="div_loading" class="container my-20 text-center">
+								<div>Loading...</div>
+								<div class="spinner-grow text-primary" role="status">
+								  <span class="visually-hidden">Loading...</span>
+								</div>
+								<div class="spinner-grow text-secondary" role="status">
+								  <span class="visually-hidden">Loading...</span>
+								</div>
+								<div class="spinner-grow text-success" role="status">
+								  <span class="visually-hidden">Loading...</span>
+								</div>
+								<div class="spinner-grow text-danger" role="status">
+								  <span class="visually-hidden">Loading...</span>
+								</div>
+								<div class="spinner-grow text-warning" role="status">
+								  <span class="visually-hidden">Loading...</span>
+								</div>
+								<div class="spinner-grow text-info" role="status">
+								  <span class="visually-hidden">Loading...</span>
+								</div>
+								<div class="spinner-grow text-light" role="status">
+								  <span class="visually-hidden">Loading...</span>
+								</div>
+								<div class="spinner-grow text-dark" role="status">
+								  <span class="visually-hidden">Loading...</span>
+								</div>
 							</div>
 							<!-- <div id="map"></div> -->
 						</div>
@@ -193,7 +219,7 @@
 		  	am5.color("#fd79a8")
 		]);
 
-		var legend = chartPie.children.push(am5.Legend.new(rootPie, {
+		var legendPie = chartPie.children.push(am5.Legend.new(rootPie, {
 			              	// nameField: "name",
 			              	// fillField: "color",
 			               //  strokeField: "color",
@@ -319,7 +345,7 @@
             });
         }  
 
-		function initCharts(level_select) {
+		function initCharts() {
 
 			var provinsi_name 	= $('#select_provinsi option:selected').text();
 			var kabkota_name 	= $('#select_kabkota option:selected').text();
@@ -327,133 +353,109 @@
 			var kelurahan_name 	= $('#select_kelurahan option:selected').text();
 			var tps_name 		= $('#select_tps option:selected').text();
 
-			$.ajax({
-				headers: {
-			        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-			    },
-			    url: '/grafik_dpt/data_gender',
-			    type:'POST',
-			    cache: false,
-			    data: {
-			    	level_select : level_select, 
-			    	provinsi_name : provinsi_name,
-			    	kabkota_name : kabkota_name,
-			    	kecamatan_name : kecamatan_name,
-			    	kelurahan_name : kelurahan_name,
-			    	tps_name : tps_name
-			    },
-			    success: function(data) {
+			if (
+				provinsi_name.length == 0 &&
+				kabkota_name.length == 0 &&
+				kecamatan_name.length == 0 &&
+				kelurahan_name.length == 0 &&
+				tps_name.length == 0
+			) {
+				swalWithBootstrapButtons.fire(
+				    'Perhatian!',
+				    'Harap pilih data terlebih dahulu',
+				    'error'
+				);
+			}
+			else {
 
-			        //console.log(data);
+				$.ajax({
+					headers: {
+				        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+				    },
+				    url: '/grafik_dpt/data_gender',
+				    type:'POST',
+				    cache: false,
+				    data: {
+				    	provinsi_name : provinsi_name,
+				    	kabkota_name : kabkota_name,
+				    	kecamatan_name : kecamatan_name,
+				    	kelurahan_name : kelurahan_name,
+				    	tps_name : tps_name
+				    },
+				    beforeSend: function() {
+			            $("#div_data").hide();
+			            $("#div_loading").show();
+			        },
+				    success: function(data) {
 
-			        if (data.result == 'success') {
+				        //console.log(data);
 
-			            var datachartpie = [];
-						datachartpie.push({category : 'Laki-laki', value : data.data_man});
-						datachartpie.push({category : 'Perempuan', value : data.data_woman});
+				        $("#div_loading").hide();
+				        $("#div_data").show();
 
-			            seriesPie.data.setAll(datachartpie);
+				        if (data.result == 'success') {
 
-			            seriesPie.labels.template.setAll({
-			            	fontSize: 12,
-			            	text: "{category} ({value})",
-			            	textType: "adjusted",
-			            	radius: 10
-			            });
+				            var datachartpie = [];
+							datachartpie.push({category : 'Laki-laki', value : data.data_man});
+							datachartpie.push({category : 'Perempuan', value : data.data_woman});
 
-			            seriesPie.ticks.template.setAll({
-			              	location: 0.8
-			            });
+				            seriesPie.data.setAll(datachartpie);
 
-			            seriesPie.animate({
-			              key: "startAngle",
-			              from: 240,
-			              to: -90,
-			              duration: 1500,
-			              easing: am5.ease.out(am5.ease.cubic)
-			            });
+				            seriesPie.labels.template.setAll({
+				            	fontSize: 12,
+				            	text: "{category} ({value})",
+				            	textType: "adjusted",
+				            	radius: 10
+				            });
 
-			            legend.data.setAll(seriesPie.dataItems);
-			            // legend.data.setAll([{
-			            //   name: "Perempuan",
-			            //   color: am5.color("#fd79a8")
-			            // },{
-			            //   name: "Laki-laki",
-			            //   color: am5.color("#0984e3")
-			            // }]);
-		  	
+				            seriesPie.ticks.template.setAll({
+				              	location: 0.8
+				            });
 
-			            $(".tx-total").text(data.data_total);
-			            $(".tx-laki").text(data.data_man);
-			            $(".tx-perempuan").text(data.data_woman);
-			        }
-			        else{
+				            seriesPie.animate({
+				              key: "startAngle",
+				              from: 240,
+				              to: -90,
+				              duration: 1500,
+				              easing: am5.ease.out(am5.ease.cubic)
+				            });
 
-			            
-			        }
-			        
-			    }
-			});
+				            legendPie.data.setAll(seriesPie.dataItems);
+				            // legendPie.data.setAll([{
+				            //   name: "Perempuan",
+				            //   color: am5.color("#fd79a8")
+				            // },{
+				            //   name: "Laki-laki",
+				            //   color: am5.color("#0984e3")
+				            // }]);
+			  	
 
-			
-		}
+				            // $(".tx-total").text(data.data_total);
+				            // $(".tx-laki").text(data.data_man);
+				            // $(".tx-perempuan").text(data.data_woman);
 
-		function initMap() {
-			// set lokasi latitude dan longitude, lokasinya kota palembang 
-			map.remove();
+				            const countUpTotal 		= new countUp.CountUp('tx_total', data.data_total);
+				            const countUpLaki 		= new countUp.CountUp('tx_laki', data.data_man);
+				            const countUpPerempuan 	= new countUp.CountUp('tx_perempuan', data.data_woman);
 
-			map = L.map('map').setView([-2.9547949, 104.6929233], 5);   
-			//setting maps menggunakan api mapbox bukan google maps, daftar dan dapatkan token      
-			L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=sk.eyJ1IjoiYXVmYXJzeWFoIiwiYSI6ImNsMW13NXlxeDBvdDAzcG82eDQ2ejVoMW4ifQ.sOJQY5T3FSYdWAc26v_BYg', {
-				attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-				maxZoom: 18,
-				id: 'mapbox/streets-v11',
-				tileSize: 512,
-				zoomOffset: -1,
-				accessToken: 'sk.eyJ1IjoiYXVmYXJzeWFoIiwiYSI6ImNsMW13NXlxeDBvdDAzcG82eDQ2ejVoMW4ifQ.sOJQY5T3FSYdWAc26v_BYg'
-			}).addTo(map);
-		}
+				            if (!countUpTotal.error && !countUpLaki.error && !countUpPerempuan.error) {
+				              countUpTotal.start();
+				              countUpLaki.start();
+				              countUpPerempuan.start();
+				            } else {
+				              console.error(countUpTotal.error);
+				              console.error(countUpLaki.error);
+				              console.error(countUpPerempuan.error);
+				            }
+				        }
+				        else{
 
-		function initMapMarkers(type){
-
-
-			$(".leaflet-marker-icon").remove();
-			$(".leaflet-marker-shadow").remove();
-			$(".leaflet-popup").remove();
-
-			$.ajax({
-				dataType: 'JSON',
-				type: 'GET',
-				url: '/institution_sensors/'+ type,
-				success: function (data) {
-
-					//console.log(data);
-					$('#total_markers').text(data.length);
-
-					for (var i = 0; i < data.length; i++) {
-
-						var id          = data[i].id;
-						var name        = data[i].institution_name;
-						var coordinate  = data[i].coordinate;
-						var description = data[i].description;
-						var serial_number = data[i].serial_number;
-						var expired_date = data[i].expired_date;
-
-						coordinate = coordinate.split(',');
-						long = parseFloat(coordinate[0]);
-						lat  = parseFloat(coordinate[1]);
-
-						var arr_coordinate = [];
-
-						arr_coordinate.push(long);
-						arr_coordinate.push(lat);
-
-						//console.log(arr_coordinate);
-						L.marker(arr_coordinate).bindTooltip(name +'<br>Serial Number : '+serial_number+'<br>Expired date : '+expired_date).addTo(map);
-						
-					}
-				}
-			});
+				            
+				        }
+				        
+				    }
+				});
+			}
 		}
 
 		$(document).ready(function() {
@@ -462,32 +464,49 @@
 			// initMapMarkers('all');
 			initSelectProvinsi();
 
-			$('.div-kabkota').hide();
-			$('.div-kecamatan').hide();
-			$('.div-kelurahan').hide();
-			$('.div-tps').hide();
+			$("#div_loading").hide();
+			$('#div_data').hide();		
+
+			$('.div-sel-kabkota').hide();
+			$('.div-sel-kecamatan').hide();
+			$('.div-sel-kelurahan').hide();
+			$('.div-sel-tps').hide();
 
 			$(".li-kabkota").addClass('d-none');
 			$('.li-kecamatan').addClass('d-none');
 			$('.li-kelurahan').addClass('d-none');
 			$('.li-tps').addClass('d-none');
 
-			initCharts('provinsi', 'all');
+			// initCharts();
 			$(".tx-provinsi").text('Semua');
 
-			$('#btn_reset').hide();		
+			$('#btn_reset').hide();
 
 			$('#btn_reset').click(function(){
 
 				$('#select_provinsi').val('all').trigger('select2:select');
 				$('.select2-selection__rendered').text('Semua');
 
+				$('#div_data').hide();
+
 				$(this).hide();
+
+				$('#select_kabkota option:selected').text('');
+				$('#select_kecamatan option:selected').text('');
+				$('#select_kelurahan option:selected').text('');
+				$('#select_tps option:selected').text('');
+			});
+
+			$('#btn_search').click(function(){
+
+				initCharts();
 			});		
 
 			$('#select_provinsi').on('select2:select', function (e) {
 			  	
-				initCharts('provinsi');
+				// initCharts();
+
+				$('#div_data').hide();
 				
 				$(".tx-provinsi").text($(this).find('option:selected').text());				
 
@@ -501,26 +520,36 @@
 
 					initSelectKabKota();
 
-					$('.div-kabkota').show();
+					$('.div-sel-kabkota').show();
 					$('#btn_reset').show();	
 				}
 				else{
 
-					$('.div-kabkota').hide();
-					$('.div-kecamatan').hide();
-					$('.div-kelurahan').hide();
-					$('.div-tps').hide();
+					$('#btn_reset').hide();	
+
+					$('.div-sel-kabkota').hide();
+					$('.div-sel-kecamatan').hide();
+					$('.div-sel-kelurahan').hide();
+					$('.div-sel-tps').hide();
 
 					$(".li-kabkota").addClass('d-none');
 					$('.li-kecamatan').addClass('d-none');
 					$('.li-kelurahan').addClass('d-none');
 					$('.li-tps').addClass('d-none');
+
+					$('#select_kabkota option:selected').text('');
+					$('#select_kecamatan option:selected').text('');
+					$('#select_kelurahan option:selected').text('');
+					$('#select_tps option:selected').text('');
 				}
 			});
 
 			$('#select_kabkota').on('select2:select', function (e) {
 			  	
-			  	initCharts('kabkota');
+			  	// initCharts();
+
+			  	$('#div_data').hide();
+
 			  	$(".li-kabkota").removeClass('d-none');
 
 			  	$(".tx-kabkota").text($(this).find('option:selected').text());	
@@ -535,13 +564,13 @@
 
 					initSelectKecamatan();
 
-					$('.div-kecamatan').show();
+					$('.div-sel-kecamatan').show();
 				}
 				else{
 
-					$('.div-kecamatan').hide();
-					$('.div-kelurahan').hide();
-					$('.div-tps').hide();
+					$('.div-sel-kecamatan').hide();
+					$('.div-sel-kelurahan').hide();
+					$('.div-sel-tps').hide();
 
 					$('.li-kecamatan').addClass('d-none');
 					$('.li-kelurahan').addClass('d-none');
@@ -551,7 +580,10 @@
 
 			$('#select_kecamatan').on('select2:select', function (e) {
 			  	
-				initCharts('kecamatan');
+				// initCharts();
+
+				$('#div_data').hide();
+
 			  	$(".li-kecamatan").removeClass('d-none');
 
 				$(".tx-kecamatan").text($(this).find('option:selected').text());	
@@ -566,12 +598,12 @@
 
 					initSelectKelurahan();
 
-					$('.div-kelurahan').show();
+					$('.div-sel-kelurahan').show();
 				}
 				else{
 
-					$('.div-kelurahan').hide();
-					$('.div-tps').hide();
+					$('.div-sel-kelurahan').hide();
+					$('.div-sel-tps').hide();
 
 					$('.li-kelurahan').addClass('d-none');
 					$('.li-tps').addClass('d-none');
@@ -580,7 +612,10 @@
 
 			$('#select_kelurahan').on('select2:select', function (e) {
 			  	
-				initCharts('kelurahan');
+				// initCharts();
+
+				$('#div_data').hide();
+
 			  	$(".li-kelurahan").removeClass('d-none');
 
 
@@ -596,11 +631,11 @@
 
 					initSelectTPS();
 
-					$('.div-tps').show();
+					$('.div-sel-tps').show();
 				}
 				else{
 
-					$('.div-tps').hide();
+					$('.div-sel-tps').hide();
 
 					$('.li-tps').addClass('d-none');
 				}
@@ -608,7 +643,10 @@
 
 			$('#select_tps').on('select2:select', function (e) {
 			  	
-				initCharts('tps');
+				// initCharts();
+
+				$('#div_data').hide();
+
 			  	$(".li-tps").removeClass('d-none');
 
 
